@@ -34,7 +34,7 @@
       <div class="loader" *ngIf="this.resData.length === 0">
         <div></div>
       </div>
-      <div routerLink="country/{{item.name.official}}" *ngFor="let item of this.resData" class="country-card">
+      <div routerLink="country/{{item.name.common}}" *ngFor="let item of this.resData" class="country-card">
         <img [src]="item.flags.png" [alt]="item.name.common" loading="lazy">
         <div class="country-content">
           <h2>{{item.name.common}}</h2>

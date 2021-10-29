@@ -37,7 +37,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Github](https://github.com/innocentcoder06/rest-countries-api-with-color-theme-switcher-master)
-- Live Site URL: [Netlify](https://your-live-site-url.com)
+- Live Site URL: [Netlify](https://nanthagopal-s-rest-app.netlify.app/)
 
 ## My process
 
