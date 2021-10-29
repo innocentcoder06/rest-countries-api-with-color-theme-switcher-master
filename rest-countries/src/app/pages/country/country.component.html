@@ -1,0 +1,51 @@
+<header>
+  <nav class="navbar">
+    <span>Where in the World?</span>
+    <div class="theme-switch">
+      <input #cBox (click)="this.changeTheme(cBox.checked)" type="checkbox" name="dark" id="dark">
+      <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000" fill-opacity="1"><rect fill="none" height="24" width="24"/><path stroke="#000" stroke-width="2px" d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg>
+      <label for="dark">Dark Mode</label>
+    </div>
+  </nav>
+</header>
+<main>
+  <div class="data-container">
+    <div class="search-nav">
+      <div routerLink="" class="backBtn-div">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21v-2z"/></svg>
+        <span>Back</span>
+      </div>
+    </div>
+    <div #dataDiv class="data-content">
+      <div *ngIf="this.countryData" class="country-data">
+        <img [src]="this.countryData.flags.png" alt="this.countryData.name.official">
+        <div class="data-card">
+          <h2>{{this.countryData.name.common}}</h2>
+          <div class="data-list">
+            <div class="list-1">
+              <div>Native Name: <span>{{this.getNativeName(this.countryData.name.nativeName)}}</span></div>
+              <div>Population: <span>{{this.formatNumber(this.countryData.population)}}</span></div>
+              <div>Region: <span>{{this.countryData.region}}</span></div>
+              <div>Sub Region: <span>{{this.countryData.subregion}}</span></div>
+              <div>Capital: <span>{{this.countryData.capital}}</span></div>
+            </div>
+            <div class="list-2">
+              <div>Top Level Domain: <span>{{this.countryData.tld}}</span></div>
+              <div>Currencies: <span>{{this.getCurrency(this.countryData.currencies)}}</span></div>
+              <div>Languages: <span>{{this.getLang(this.countryData.languages)}}</span></div>
+            </div>
+          </div>
+          <div class="border-country">
+            Border Countries:
+            <div>
+              <span routerLink="/country/{{this.getCountry(item)}}" *ngFor="let item of this.countryData.borders">{{this.getCountry(item)}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div (click)="this.backToTop()" *ngIf="this.scrollDiv" class="scroll-div">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,51 @@
+<header>
+  <nav class="navbar">
+    <span>Where in the World?</span>
+    <div class="theme-switch">
+      <input #cBox (click)="this.changeTheme(cBox.checked)" [checked]="this.switchBool" type="checkbox" name="dark" id="dark">
+      <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000" fill-opacity="1"><rect fill="none" height="24" width="24"/><path stroke="#000" stroke-width="2px" d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg>
+      <label for="dark">Dark Mode</label>
+    </div>
+  </nav>
+</header>
+<main>
+  <div class="data-container">
+    <div class="search-nav">
+      <div class="search-box">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input [formControl]="search" (keyup)="this.onKeyUp($event)" type="text" placeholder="Search for a country...">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7h-2z"/></svg>
+      </div>
+      <div class="filter-box">
+        <div #fbox (click)="this.filterClick()" class="filter-text">
+          <span>Filter by Region</span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"/></svg>
+        </div>
+        <div #flist class="filter-list">
+          <span (click)="this.filterByregion('Africa')">Africa</span>
+          <span (click)="this.filterByregion('Americas')">America</span>
+          <span (click)="this.filterByregion('Asia')">Asia</span>
+          <span (click)="this.filterByregion('Europe')">Europe</span>
+          <span (click)="this.filterByregion('Oceania')">Oceania</span>
+        </div>
+      </div>
+    </div>
+    <div #dataDiv class="data-content">
+      <div class="loader" *ngIf="this.resData.length === 0">
+        <div></div>
+      </div>
+      <div routerLink="country/{{item.name.official}}" *ngFor="let item of this.resData" class="country-card">
+        <img [src]="item.flags.png" [alt]="item.name.common" loading="lazy">
+        <div class="country-content">
+          <h2>{{item.name.common}}</h2>
+          <div>Population: <span>{{this.formatNumber(item.population)}}</span></div>
+          <div>Region: <span>{{item.region}}</span></div>
+          <div>Capital: <span>{{item.capital}}</span></div>
+        </div>  
+      </div>
+      <div (click)="this.backToTop()" *ngIf="this.scrollDiv" class="scroll-div">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+      </div>
+    </div>
+  </div>
+</main>
