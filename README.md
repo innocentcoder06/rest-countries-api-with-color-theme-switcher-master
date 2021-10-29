@@ -32,11 +32,11 @@ Users should be able to:
 
 ### Screenshot
 
-![REST Countries API with color theme switcher challenge on Frontend Mentor](./screenshot.jpg)
+![REST Countries API with color theme switcher challenge on Frontend Mentor](./screenshot.png)
 
 ### Links
 
-- Solution URL: [Github](https://your-solution-url.com)
+- Solution URL: [Github](https://github.com/innocentcoder06/rest-countries-api-with-color-theme-switcher-master)
 - Live Site URL: [Netlify](https://your-live-site-url.com)
 
 ## My process
